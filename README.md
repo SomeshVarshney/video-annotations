@@ -10,7 +10,7 @@ The goal is to practice guideline-based annotation work the way it is done on re
 
 - [x] Annotation guidelines written (v1.0)
 - [x] Labeling workbook built (dropdown-validated labels, caption evaluation, consistency check, auto-calculated summary)
-- [ ] Collect 50 short clips (5-15 s) from Creative Commons YouTube videos and public datasets
+- [ ] Collect 30 short clips (5-15 s) from Creative Commons YouTube videos and public datasets
 - [ ] Label all clips (scene, action, objects, audio events, safety, confidence)
 - [ ] Evaluate AI-generated captions (1-5 accuracy rating and error types)
 - [ ] Re-label 20 clips several days later and measure self-agreement
