@@ -1,19 +1,31 @@
 # Video Annotation Mini-Project
 
+> **Status: 🚧 Work in progress.** The guidelines and labeling workbook are ready; data collection, labeling and evaluation are underway. Results will be added when the project is complete.
+
 A small, end-to-end data annotation project: build a 50-clip video dataset, write the labeling guidelines, label every clip, evaluate AI-generated captions against my labels, and measure my own labeling consistency.
 
 The goal is to practice guideline-based annotation work the way it is done on real data-labeling and AI-evaluation teams: clear rules, consistent labels, honest error analysis, and measured quality.
 
+## Progress
+
+- [x] Annotation guidelines written (v1.0)
+- [x] Labeling workbook built (dropdown-validated labels, caption evaluation, consistency check, auto-calculated summary)
+- [ ] Collect 50 short clips (5-15 s) from Creative Commons YouTube videos and public datasets
+- [ ] Label all clips (scene, action, objects, audio events, safety, confidence)
+- [ ] Evaluate AI-generated captions (1-5 accuracy rating and error types)
+- [ ] Re-label 20 clips several days later and measure self-agreement
+- [ ] Write the final summary and add results to this README
+
 ## Workflow
 
-| Step | What I did | Where to look |
+| Step | What it involves | Where to look |
 |---|---|---|
-| 1. Collect | Gathered 50 short clips (5-15 s) from Creative Commons YouTube videos and public datasets | `Clips` sheet |
-| 2. Guidelines | Wrote label definitions, edge-case rules and worked examples | [`guidelines/annotation_guidelines.md`](guidelines/annotation_guidelines.md) |
-| 3. Label | Labeled scene, main action, objects, audio events, safety flag and confidence for each clip | `Labels` sheet |
-| 4. Evaluate AI | Generated a caption per clip with an AI tool, rated accuracy 1-5, and flagged error types | `Caption_Eval` sheet |
-| 5. Consistency | Re-labeled 20 clips several days later without looking at my first answers | `Relabel` sheet |
-| 6. Summary | Wrote up findings, tricky cases and how I handled uncertainty | [`docs/summary.md`](docs/summary.md) |
+| 1. Collect | Gather 50 short clips from Creative Commons YouTube videos and public datasets | `Clips` sheet |
+| 2. Guidelines | Label definitions, edge-case rules and worked examples | [`guidelines/annotation_guidelines.md`](guidelines/annotation_guidelines.md) |
+| 3. Label | Label scene, main action, objects, audio events, safety flag and confidence for each clip | `Labels` sheet |
+| 4. Evaluate AI | Generate a caption per clip with an AI tool, rate accuracy 1-5, and flag error types | `Caption_Eval` sheet |
+| 5. Consistency | Re-label 20 clips several days later without looking at the first answers | `Relabel` sheet |
+| 6. Summary | Write up findings, tricky cases and how uncertainty was handled | `docs/summary.md` (coming soon) |
 
 ## Label schema
 
@@ -28,36 +40,15 @@ The goal is to practice guideline-based annotation work the way it is done on re
 
 Full definitions, edge cases and examples are in the guidelines.
 
+## Approach to uncertainty
+
+- A 60-second rule: if a label can't be decided in about a minute, pick the best option, set Confidence to Low and add a note.
+- The `needs_review` safety flag is used for borderline clips instead of guessing.
+- Guidelines are versioned; any change made after the consistency check will be recorded in the change log.
+
 ## Results
 
-> Fill these in from the `Summary` sheet once labeling and the re-label round are done.
-
-| Metric | Result |
-|---|---|
-| Clips labeled | _/50 |
-| Safe / unsafe / needs_review | _ / _ / _ |
-| Low-confidence labels | _ |
-| Mean AI caption accuracy (1-5) | _ |
-| Captions with hallucinated details | _ / 50 |
-| Captions that missed an object or action | _ / 50 |
-| Captions with wrong scene or audio | _ / 50 |
-| Captions that missed a safety issue | _ / 50 |
-| Overall self-agreement (scene + action + safety) | _% on 20 clips |
-| Scene / action / safety agreement | _% / _% / _% |
-
-## Key findings
-
-- **AI caption errors:** _most common error types, with 1-2 clip IDs as examples_
-- **Hardest clips to label:** _what made them ambiguous and which rule resolved them_
-- **Consistency:** _which field I disagreed with myself on most, and what I changed in the guidelines as a result_
-
-See [`docs/summary.md`](docs/summary.md) for the full write-up.
-
-## Handling uncertainty
-
-- A 60-second rule: if I could not decide in about a minute, I picked the best label, set Confidence to Low and added a note.
-- The `needs_review` safety flag is used for borderline clips instead of guessing.
-- Guidelines were versioned; changes made after the consistency check are logged in the guidelines' change log.
+Coming soon. This section will report label distribution, AI caption accuracy and error types, and self-agreement on the re-labeled clips.
 
 ## Repository structure
 
@@ -66,22 +57,20 @@ See [`docs/summary.md`](docs/summary.md) for the full write-up.
 ├── README.md
 ├── guidelines/
 │   └── annotation_guidelines.md
-├── data/
-│   ├── video_annotation_workbook.xlsx   # all sheets, formulas calculate the summary
-│   ├── labels.csv                       # export of the Labels sheet
-│   └── caption_eval.csv                 # export of the Caption_Eval sheet
-└── docs/
-    └── summary.md
+└── data/
+    └── video_annotation_workbook.xlsx   # all sheets, formulas calculate the summary
 ```
+
+`labels.csv`, `caption_eval.csv` and `docs/summary.md` will be added once the data is complete.
 
 ## Data and licensing
 
-Video files are not stored in this repository. The `Clips` sheet lists each clip's title, source URL and licence (Creative Commons or public dataset) so the originals can be found and attributed. My own labels, guidelines and write-up are released under the MIT licence.
+Video files will not be stored in this repository. The `Clips` sheet lists each clip's title, source URL and licence (Creative Commons or public dataset) so the originals can be found and attributed. My own labels, guidelines and write-up are released under the MIT licence.
 
-## Tools used
+## Tools
 
 Google Sheets / Excel (data validation and formulas), an AI captioning tool for the evaluation step, and Git/GitHub for version history.
 
-## Limitations
+## Known limitations
 
 This is a 50-clip, single-annotator project. Agreement is measured against my own earlier labels, not a second person, and a sample of 20 re-labeled clips gives a rough rather than statistically strong estimate. With more time, the next steps would be a second annotator, Cohen's kappa, and a tool like Label Studio.
